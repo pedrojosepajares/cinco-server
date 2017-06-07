@@ -1,0 +1,24 @@
+{
+  "name": "cinco-server",
+  "version": "1.0.0",
+  "description": "cinco card game server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/polaris3748/cinco-server.git"
+  },
+  "keywords": [
+    "server",
+    "api",
+    "rest"
+  ],
+  "author": "Pedro José Pajares Ramírez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/polaris3748/cinco-server/issues"
+  },
+  "homepage": "https://gitlab.com/polaris3748/cinco-server#README"
+}
