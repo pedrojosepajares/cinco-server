@@ -4,20 +4,24 @@ var dbUrl = "mongodb://localhost/",
 
 var express = require('express'),
     app = express(),
-    router = express.Router();
+    bodyParser = require('body-parser'),
     mongoose = require('mongoose');
 
-router.get('/', function(req, res){
-    res.send("Hello World!");
-});
-
-app.use(router);
+// JSON Parse
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json()); 
 
 // Conexión con la base de datos
 mongoose.connect(dbUrl+dbName, function(err, res){
     if (err) console.log("ERROR: can't connect to database (" + err + ")");
     else console.log("Connected to database " + dbName );
 });
+
+// Direccionamiento
+var routes = require('./api/routes/cinco-server-routes');
+app.use(routes);
+
+
 
 app.listen(port, function(){
     console.log("Server running on localhost:" + port);
