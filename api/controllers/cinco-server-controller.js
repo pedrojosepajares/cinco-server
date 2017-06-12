@@ -38,10 +38,10 @@ exports.add = function(req, res){
 
   var deck = new deckModel({
     name: req.body.name,
-    deck: req.body.deck
+    cards: req.body.cards
   })
 
-  deck.save(function(err, tvshow){
+  deck.save(function(err, deck){
     if (err) return res.status(500).send(err.mesaage);
     res.status(200).jsonp(deck);
   });
@@ -56,7 +56,7 @@ exports.update = function(req, res){
   console.log('PUT /deck/' + req.params.id);
   deckModel.findById(req.params.id, function(err, deck){
     deck.name = req.body.name;
-    deck.deck = req.body.deck;
+    deck.cards = req.body.cards;
   
     deck.save(function(err){
       if (err) return res.status(500).send(err.mesaage);
