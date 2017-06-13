@@ -1,11 +1,16 @@
 var port = 3000;
 var dbUrl = "mongodb://localhost/",
-    dbName = "decks";
+    dbName = "decks",
+    decksFile = "./json/decks.json"
 
 var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    jsonfile = require('jsonfile');
+    
+var routes = require('./api/routes/cinco-server-routes'),
+    deckModel = require('./api/models/cinco-server-model');
 
 // JSON Parse
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -15,33 +20,31 @@ app.use(bodyParser.json());
 mongoose.Promise = global.Promise;
 mongoose.connect(dbUrl+dbName, function(err, res){
     if (err) console.log("ERROR: can't connect to database (" + err + ")");
-    else console.log("Connected to database " + dbName );
+    else{
+        console.log("Connected to database " + dbName );
+        jsonfile.readFile(decksFile, function(err, obj){
+            if (err) console.log("ERROR: can't read decks at " + decksFile);
+            else{
+
+                var deck = new deckModel({
+                    name: obj.name,
+                    cards: obj.cards
+                })
+
+                deck.save(function(err, deck){
+                    if (err) console.log("ERROR: can't save decks at database");
+                    else console.log("Decks saved at database");  
+                });
+            }    
+        });
+    }
 });
 
 // Direccionamiento
-var routes = require('./api/routes/cinco-server-routes');
 app.use(routes);
 
-// Cabeceras
-app.use(function (req, res, next) {
-
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
-
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
-
-    // Pass to next layer of middleware
-    next();
-});
-
 app.listen(port, function(){
+    
     console.log("Server running on localhost:" + port);
+
 });

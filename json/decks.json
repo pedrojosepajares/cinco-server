@@ -1,0 +1,13 @@
+{
+	"name": "Baraja JSON",
+	"cards": [
+		{
+			"name": "1p",
+			"text": "Bebes un trago"
+		},
+		{
+			"name": "2p",
+			"text": "Bebes dos tragos"
+		}	
+	]
+}
