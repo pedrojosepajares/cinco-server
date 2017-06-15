@@ -1,5 +1,5 @@
 var port = 3000;
-var dbUrl = "mongodb://localhost/",
+var dbUrl = "mongodb://0.0.0.0/",
     dbName = "decks",
     decksFile = "./json/decks.json"
 
