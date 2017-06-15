@@ -1,7 +1,6 @@
 var port = 3000;
 var dbUrl = "mongodb://mongo/",
     dbName = "decks",
-    dbPort = ":27017"
     decksFile = "./json/decks.json"
 
 var express = require('express'),
@@ -19,7 +18,7 @@ app.use(bodyParser.json());
 
 // Conexión con la base de datos
 mongoose.Promise = global.Promise;
-mongoose.connect(dbUrl+dbName+dbPort, function(err, res){
+mongoose.connect(dbUrl+dbName, function(err, res){
     if (err) console.log("ERROR: can't connect to database (" + err + ")");
     else{
         console.log("Connected to database " + dbName );
