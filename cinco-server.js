@@ -1,6 +1,7 @@
 var port = 3000;
-var dbUrl = "mongodb://mongo/decks";
-    decksFile = "./json/decks.json"
+var dbUrl = "mongodb://mongo/decks",
+    dbName = "decks",
+    decksFile = "./json/decks.json";
 
 var express = require('express'),
     app = express(),
