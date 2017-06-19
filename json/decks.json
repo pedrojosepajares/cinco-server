@@ -1,13 +1,57 @@
 {
-	"name": "Baraja JSON",
+	"name": "Baraja clásica",
 	"cards": [
 		{
-			"name": "1p",
-			"text": "Bebes un trago"
+			"name": "1c",
+			"text": "Elige un jugador. Ese jugador bebe un trago"
 		},
 		{
-			"name": "2p",
-			"text": "Bebes dos tragos"
+			"name": "2c",
+			"text": "Elige un jugador. Ese jugador bebe dos tragos"
+		},
+		{
+			"name": "3c",
+			"text": "Bebe un trago"
+		},
+		{
+			"name": "4c",
+			"text": "Bebe dos tragos"
+		},
+		{
+			"name": "5c",
+			"text": "Qué, cómo, dónde"
+		},
+		{
+			"name": "6c",
+			"text": "Juego de los números"
+		},
+		{
+			"name": "7c",
+			"text": "Regla o prohibición"
+		},
+		{
+			"name": "8c",
+			"text": "Todos riman"
+		},
+		{
+			"name": "9c",
+			"text": "Elige un jugador. Ese jugador bebe tres tragos"
+		},
+		{
+			"name": "10c",
+			"text": "Juego del dedo"
+		},
+		{
+			"name": "11c",
+			"text": "Puta"
+		},
+		{
+			"name": "12c",
+			"text": "Bebes un chupito"
+		},
+		{
+			"name": "13c",
+			"text": "Todos los jugadores beben un trago"
 		}	
 	]
 }

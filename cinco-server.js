@@ -1,7 +1,8 @@
 var port = 3000;
-var dbUrl = "mongodb://mongo/decks",
+var dbUrl = "mongodb://localhost/decks"
+    //dbUrl = "mongodb://mongo/decks", URL para docker compose
     dbName = "decks",
-    decksFile = "./json/decks.json";
+    deckFile = "./json/decks.json";
 
 var express = require('express'),
     app = express(),
@@ -10,7 +11,8 @@ var express = require('express'),
     jsonfile = require('jsonfile');
     
 var routes = require('./api/routes/cinco-server-routes'),
-    deckModel = require('./api/models/cinco-server-model');
+    deckModel = require('./api/models/cinco-server-model'),
+    deckParser = require('./deck-parser/deck-parser');
 
 // JSON Parse
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,9 +24,12 @@ mongoose.connect(dbUrl, function(err, res){
     if (err) console.log("ERROR: can't connect to database (" + err + ")");
     else{
         console.log("Connected to database " + dbName );
-        jsonfile.readFile(decksFile, function(err, obj){
+        mongoose.connection.db.dropCollection(dbName);
+        jsonfile.readFile(deckFile, function(err, obj){
             if (err) console.log("ERROR: can't read decks at " + decksFile);
             else{
+
+                obj = deckParser.parse(obj);
 
                 var deck = new deckModel({
                     name: obj.name,
